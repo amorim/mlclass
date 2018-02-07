@@ -19,7 +19,7 @@ data = pd.read_excel('diabetes_dataset.xlsx')
 # Criando X and y par ao algorítmo de aprendizagem de máquina.\
 print(' - Criando X e y para o algoritmo de aprendizagem a partir do arquivo diabetes_dataset')
 # Caso queira modificar as colunas consideradas basta algera o array a seguir.
-feature_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 
+feature_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
                 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
 X = data[feature_cols]
 y = data.Outcome
@@ -35,7 +35,7 @@ data_app = pd.read_excel('diabetes_app.xlsx')
 y_pred = neigh.predict(data_app)
 
 # Enviando previsões realizadas com o modelo para o servidor
-URL = "http://aydanomachado.com/mlclass/01_Preprocessing.php"
+URL = "||||http://aydanomachado.com/mlclass/01_Preprocessing.php"
 
 #TODO Substituir pela sua chave aqui
 DEV_KEY = "COLOCAR_SUA_KEY_AQUI"
