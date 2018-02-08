@@ -14,15 +14,13 @@ from sklearn.neighbors import KNeighborsClassifier
 import requests
 
 print('\n - Lendo o arquivo com o dataset sobre diabetes')
-data = pd.read_csv('diabetes_fixed_dataset_NoPedi_NoAge.csv')
+data = pd.read_csv('diabetes_medianNormByMinMax_dataset.csv')
 
 # Criando X and y par ao algorítmo de aprendizagem de máquina.\
 print(' - Criando X e y para o algoritmo de aprendizagem a partir do arquivo diabetes_dataset')
 # Caso queira modificar as colunas consideradas basta algera o array a seguir.
 feature_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
-                'Insulin', 'BMI']
-#feature_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
-#                'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+                'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
 X = data[feature_cols]
 y = data.Outcome
 
@@ -33,7 +31,7 @@ neigh.fit(X, y)
 
 #realizando previsões com o arquivo de
 print(' - Aplicando modelo e enviando para o servidor')
-data_app = pd.read_csv('diabetes_app_NoPedi_NoAge.csv')
+data_app = pd.read_csv('diabetes_app.csv')
 y_pred = neigh.predict(data_app)
 
 # Enviando previsões realizadas com o modelo para o servidor
