@@ -25,27 +25,25 @@ def playWithAverages(data, cols):
 
     for i in cols:
         for j in range(len(data[i])):
-            if (isnan(data[i][j])):
-                data.set_value(j, i, median[i])
+            #if (isnan(data[i][j])):
+                #data.set_value(j, i, average[i])
                 #data[i][j] = median[i]
             data.set_value(j, i, (data[i][j] - minimum[i]) / (maximum[i] - minimum[i]))
 
 def removeRows(data, cols):
-    removed = {}
-    for i in cols:
-        for j in range(len(data[i]) - 1, 0, -1):
-            if (j in removed): continue
-            if (isnan(data[i][j])):
-                print("dropping:", j)
-                data = data.drop([j])
-                removed[j] = 1
-                #removeRows(data, cols)
-    return(data)
+    for c in cols:
+        data = data[pd.isna(data[c]) != True]
+    return data
 
 data = pd.read_csv('diabetes_dataset.csv').astype('float')
 cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
                 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
-
+#
+# data = removeRows(data, cols)
+# print(data)
+# data.to_csv("diabetes_removeAllInvalidRows_dataset.csv")
+#data = pd.read_csv('diabetes_app.csv').astype('float')
+playWithAverages(data, cols)
 data = removeRows(data, cols)
 print(data)
-data.to_csv("diabetes_removeAllInvalidRows_dataset.csv")
+data.to_csv("diabetes_averageNormByMinMaxRemovingMissingValues_dataset.csv", index=False)
